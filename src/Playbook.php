@@ -15,7 +15,9 @@ class Playbook
 
     public function toArray(): array
     {
-        return [];
+        return array_map(function(PlaybookEntry $entry) {
+            return $entry->toArray();
+        }, $this->entries);
     }
 
     public function toYaml(): string

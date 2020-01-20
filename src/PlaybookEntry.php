@@ -10,7 +10,7 @@ class PlaybookEntry
     public function __construct(string $host, array $tasks)
     {
         $this->host = $host;
-        $this->tasks = $this->pushTasks($tasks);
+        $this->pushTasks($tasks);
     }
 
     public function pushTasks(array $tasks): void
@@ -23,5 +23,14 @@ class PlaybookEntry
     public function pushTask(Task $task): void
     {
         $this->tasks[] = $task;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'tasks' => array_map(function (Task $task) {
+                return $task->toArray();
+            }, $this->tasks)
+        ];
     }
 }
