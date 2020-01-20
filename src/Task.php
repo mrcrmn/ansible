@@ -5,8 +5,8 @@ namespace Mrcrmn\Ansible;
 class Task
 {
     protected $taskName;
-    protected string $description;
-    protected array $options = [];
+    protected $description;
+    protected $options = [];
 
     public function __construct(string $description, string $taskName, array $options)
     {

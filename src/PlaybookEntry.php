@@ -4,12 +4,11 @@ namespace Mrcrmn\Ansible;
 
 class PlaybookEntry
 {
-    protected string $host;
-    protected array $tasks = [];
+    protected $host;
+    protected $tasks = [];
 
-    public function __construct(string $description, string $host, array $tasks)
+    public function __construct(string $host, array $tasks)
     {
-        $this->$description = $description;
         $this->host = $host;
         $this->tasks = $this->pushTasks($tasks);
     }
