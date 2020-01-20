@@ -1,6 +1,6 @@
 <?php
 
-namespace Mrcrmn\Ansible\Tests\Unit;
+namespace Mrcrmn\Ansible\Tests\Unit\Modules\Packaging;
 
 use Mrcrmn\Ansible\Exceptions\InvalidParameterException;
 use Mrcrmn\Ansible\Modules\Packaging\AptRepository;

@@ -2,7 +2,6 @@
 
 namespace Mrcrmn\Ansible\Modules\Packaging;
 
-use InvalidArgumentException;
 use Mrcrmn\Ansible\Task;
 
 class Apt extends Task
