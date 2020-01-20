@@ -1,0 +1,72 @@
+-
+  hosts: all
+  tasks:
+    -
+      name: 'Install git'
+      apt:
+        pkg: git
+        state: present
+    -
+      name: 'Install curl'
+      apt:
+        pkg: curl
+        state: present
+    -
+      name: 'Install zip'
+      apt:
+        pkg: zip
+        state: present
+-
+  hosts: all
+  tasks:
+    -
+      name: 'Install Nginx'
+      apt:
+        pkg: nginx
+        state: present
+    -
+      name: 'Ensure Nginx is running'
+      service:
+        name: nginx
+        state: started
+        enabled: 'yes'
+-
+  hosts: all
+  tasks:
+    -
+      name: 'Add PHP Repository'
+      apt_repository:
+        repo: 'ppa:andrej/php'
+        state: present
+    -
+      name: 'Install PHP'
+      apt:
+        pkg: php7.4
+        state: present
+    -
+      name: 'Install PHP Extensions'
+      apt:
+        pkg:
+          - php7.4-common
+          - php7.4-cli
+          - php7.4-fpm
+          - php7.4-mbstring
+          - php7.4-bcmath
+          - php7.4-ctype
+          - php7.4-tokenizer
+          - php7.4-xml
+          - php7.4-curl
+        state: present
+-
+  hosts: all
+  tasks:
+    -
+      name: 'Load Nodesource'
+      command:
+        cmd: 'curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -'
+    -
+      name: 'Install Node.js'
+      apt:
+        pkg: nodejs
+        state: present
+        update_cache: 'yes'

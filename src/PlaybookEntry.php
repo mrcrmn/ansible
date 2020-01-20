@@ -4,10 +4,10 @@ namespace Mrcrmn\Ansible;
 
 class PlaybookEntry
 {
-    protected $host;
+    protected $host = 'all';
     protected $tasks = [];
 
-    public function __construct(string $host, array $tasks)
+    public function __construct(string $host = 'all', array $tasks = [])
     {
         $this->host = $host;
         $this->pushTasks($tasks);
@@ -28,6 +28,7 @@ class PlaybookEntry
     public function toArray(): array
     {
         return [
+            'hosts' => $this->host, 
             'tasks' => array_map(function (Task $task) {
                 return $task->toArray();
             }, $this->tasks)

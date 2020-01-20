@@ -2,15 +2,42 @@
 
 namespace Mrcrmn\Ansible;
 
+use Mrcrmn\Ansible\Recipes\Recipe;
 use Symfony\Component\Yaml\Yaml;
 
 class Playbook
 {
     protected $entries = [];
 
+    public function __construct()
+    {
+        
+    }
+
+    public static function fromRecipes(array $recipes = [])
+    {
+        $static = new self;
+
+        foreach ($recipes as $recipe) {
+            $static->addRecipe($recipe);
+        }
+
+        return $static;
+    }
+
     public function entry(string $host, array $tasks)
     {
-        $this->entries[] = new PlaybookEntry($host, $tasks);
+        $this->addEntry(new PlaybookEntry($host, $tasks));
+    }
+
+    public function addEntry(PlaybookEntry $entry)
+    {
+        $this->entries[] = $entry;
+    }
+
+    public function addRecipe(Recipe $recipe)
+    {
+        $this->addEntry($recipe->getEntry());
     }
 
     public function toArray(): array
