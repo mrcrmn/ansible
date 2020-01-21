@@ -48,5 +48,5 @@ $playbook->fromRecipes('dbservers', [
         'database' => 'database_name',
         'user' => 'mysql_user',
         'password' => 'mysql_password'
-    ])
+    ]), 
 ]);
