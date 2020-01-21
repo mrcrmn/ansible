@@ -27,4 +27,23 @@ class HostTest extends TestCase
         $host->addToGroup('prod');
         $this->assertCount(2, $host->groups());
     }
+
+    public function test_it_can_return_its_name()
+    {
+        $host = new Host('127.0.0.1');
+
+        $this->assertEquals('127.0.0.1', $host->name());
+    }
+
+    public function test_it_knows_which_group_its_assigned_to()
+    {
+        $host = new Host('127.0.0.1');
+        
+        $host->addToGroup('webservers');
+        $host->addToGroup('prod');
+
+        $this->assertTrue($host->isAssignedTo('webservers'));
+        $this->assertTrue($host->isAssignedTo('prod'));
+        $this->assertFalse($host->isAssignedTo('dbservers'));
+    }
 }

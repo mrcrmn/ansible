@@ -12,7 +12,5 @@ class AnsibleTest extends TestCase
         $ans = new Ansible([
             '127.0.0.1'
         ]);
-
-        $this->assertInstanceOf();
     }
 }

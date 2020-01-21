@@ -31,6 +31,16 @@ class Host
     }
 
     /**
+     * Getter for the host name.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->name;
+    }
+
+    /**
      * Gets all groups this host is assigned to.
      *
      * @return string[]
@@ -53,5 +63,16 @@ class Host
         }
 
         return $this;
+    }
+
+    /**
+     * Checks if the host is assigned to the given group.
+     *
+     * @param string $group
+     * @return bool
+     */
+    public function isAssignedTo(string $group)
+    {
+        return in_array($group, $this->groups);
     }
 }
